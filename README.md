@@ -16,7 +16,7 @@ Barındırdığı hazır yapılar:
 
 - Yeni bir proje oluştur.
 - Burada yer alan lib,assets folderlarını oluşturduğun projeye kopyala
-- Projede replace yaparak '''sablond''' kelimesini belirlemiş olduğun proje adı ile değiştir.
+- Projede replace yaparak ```sablond``` kelimesini belirlemiş olduğun proje adı ile değiştir.
 - Google_ads ayarlamalarını yap.
     - Android/manifest odyasını değiştir
             
