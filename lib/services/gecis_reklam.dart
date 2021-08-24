@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:sablond/dao.dart';
+import 'package:sablond/function.dart';
 
 import 'ad_helper.dart';
 

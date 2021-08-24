@@ -1,21 +1,31 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:sablond/lacator.dart';
 import 'package:sablond/providers_value/search_text.dart';
 import 'package:sablond/theme/theme_model.dart';
 import 'database/databse_view_model.dart';
-import 'package:sablond/screen/my_home_page.dart';
-import 'GsLocalization/gs_localization.dart';
-import 'GsLocalization/lang_supported.dart';
+import 'package:sablond/view/my_home_page.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   setupLacator();
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('en', 'US'), Locale('tr', 'TR')],
+        //supportedLocales: LangSupported.locales,
+        path:
+            'assets/translations', // <-- change the path of the translation files
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,27 +41,17 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<SearchText>(
             create: (context) => SearchText(),
-          ),
-          ChangeNotifierProvider<GsLocalization>(
-              create: (_) => GsLocalization(), lazy: false)
+          )
         ],
-        child: Consumer2<GsLocalization, ThemeNotifier>(
-            builder: (context, gsLocalization, tema, child) {
+        child: Consumer<ThemeNotifier>(
+            builder: (context, tema, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            // theme: ThemeData(
-            //   scaffoldBackgroundColor: Colors.white,
-            //   primarySwatch: MyColors.navy,
-            //   accentColor: MyColors.navy,
-            // ),
             theme: tema.getTheme(),
             //darkTheme: tema.darkTheme, // Provide light theme // Provide dark theme
-            locale: gsLocalization.locale,
-            supportedLocales: LangSupported.locales,
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             home: MyHomePage(title: 'Flutter Demo Home Page'),
             //home: sayfaiki(),
           );

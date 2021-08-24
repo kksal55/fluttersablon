@@ -1,12 +1,12 @@
-import 'dart:ffi';
+// ignore_for_file: avoid_print
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sablond/dao.dart';
-import 'package:sablond/GsLocalization/gs_localization.dart';
-import 'package:sablond/GsLocalization/lang_key.dart';
+import 'package:sablond/function.dart';
+import 'package:sablond/services/lang_keys.dart';
 import 'package:sablond/database/database_helper.dart';
 import 'package:sablond/database/databse_view_model.dart';
 import 'package:sablond/providers_value/search_text.dart';
@@ -21,19 +21,15 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
- 
+
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+  var kontrol = "Kontrol";
   GecisReklam gecisreklam = GecisReklam();
   DAO dao = DAO();
   DatabaseHelper dbBaglanti = DatabaseHelper();
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      final _gsLocalization =
-          Provider.of<GsLocalization>(context, listen: false);
-      await _gsLocalization.load();
-    });
     WidgetsBinding.instance!.addObserver(this);
 
     gecisreklam
@@ -48,8 +44,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    //context.locale =  Locale('en', 'US');
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-    final gsLocalization = Provider.of<GsLocalization>(context, listen: false);
     final _databaseHelper = Provider.of<DatabaseViewModel>(context);
     final kelime = Provider.of<SearchText>(context, listen: false);
     bool isDarkMode =
@@ -60,7 +56,27 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     return Scaffold(
       drawer: drawer(),
       body: SafeArea(
-        child: Container(color: Colors.red,),
+        child: NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  title: Text(LangKey.app_name.tr()),
+                  pinned: true,
+                ),
+              ];
+            },
+            body: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 50),
+                    color: Colors.red,
+                  ),
+                ),
+                Positioned(right: 0, left: 0, bottom: 0, child: banner_reklam())
+              ],
+            )),
       ),
     );
   }
@@ -74,34 +90,34 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-
+    var tag = "Lifecycle";
+    var kontrol = "Kontrol";
     // These are the callbacks
     switch (state) {
       case AppLifecycleState.resumed:
-        print("on resumed oldu1");
+        print("$kontrol: $tag on resumed");
         break;
       case AppLifecycleState.inactive:
-        print("on inactive oldu1");
+        print("$kontrol: $tag on inactive");
         break;
       case AppLifecycleState.paused:
-        print("on paused oldu1");
+        print("$kontrol: $tag on paused");
         break;
       case AppLifecycleState.detached:
-        print("on detached oldu1");
+        print("$kontrol: $tag on detached");
         break;
     }
-    print("oldu1" + state.toString());
-    print("oldu1" + TickerMode.of(context).toString());
+    print("$kontrol: Lifecycle " + state.toString());
+    print("$kontrol: Lifecycle " + TickerMode.of(context).toString());
   }
 
   yenilemeIslemleri() {
     dao.reklamSayisiniArttir();
-    print("Sayfa yenileneek değerler");
+    print("$kontrol: Reklam - Sayfa yenileneek değerler");
     dao.reklamGorunsunMu().then((value) {
       value == true
           ? gecisreklam.interstitialAd?.show()
-          : print("Reklam görünmedi");
+          : print("$kontrol: Reklam görünmedi");
     });
   }
 }
-

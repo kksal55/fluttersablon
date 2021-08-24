@@ -1,8 +1,9 @@
 import 'dart:io';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sablond/screen/my_home_page.dart';
+import 'package:sablond/services/lang_keys.dart';
+import 'package:sablond/view/my_home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'oval_right_border_clipper.dart';
 
@@ -48,12 +49,12 @@ class drawer extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 40,
                         backgroundImage:
-                            AssetImage("assets/bitkiresim/icon.png"),
+                            AssetImage("assets/images/splash.png"),
                       ),
                     ),
                     SizedBox(height: 5.0),
                     Text(
-                      "Şifalı Bitkiler",
+                      LangKey.app_name.tr(),
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18.0,

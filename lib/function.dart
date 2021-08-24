@@ -1,8 +1,11 @@
 // ignore: file_names
 // ignore: non_constant_identifier_names
+// ignore_for_file: avoid_print
+
 import 'package:shared_preferences/shared_preferences.dart';
  
 class DAO {
+ 
   Future<bool> reklamGorunsunMu() async {
     bool durum = false;
     await reklamSayisiniGetir().then((value) {

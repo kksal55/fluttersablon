@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'ad_helper.dart';
@@ -28,7 +29,7 @@ class _banner_reklamState extends State<banner_reklam> {
           });
         },
         onAdFailedToLoad: (ad, err) {
-          //print('Failed to load a banner ad: ${err.message}');
+          print('Kontrol: Failed to load a banner ad: ${err.message}');
           _isBannerAdReady = false;
           ad.dispose();
         },
@@ -39,7 +40,7 @@ class _banner_reklamState extends State<banner_reklam> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isBannerAdReady)
+    if (_isBannerAdReady) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -50,7 +51,15 @@ class _banner_reklamState extends State<banner_reklam> {
           child: AdWidget(ad: _bannerAd),
         ),
       );
-    else
-      return Container();
+    } else {
+      return Center(
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          color: Colors.amber,
+          child: Center(child: Text("reklam yüklenmedi")),
+        ),
+      );
+    }
   }
 }
