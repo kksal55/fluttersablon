@@ -8,7 +8,6 @@ A new Flutter project.
 - Burada yer alan lib,assets, folderlarını ını oluşturduğun projeye kopyala
 - Google_ads ayarlamalarını yap.
     - Android/manifest odyasını değiştir
-            
             ```
             <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
