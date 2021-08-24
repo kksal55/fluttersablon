@@ -5,7 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 - Yeni bir proje oluştur.
-- Burada yer alan lib,assets, folderlarını ını oluşturduğun projeye kopyala
+- Burada yer alan lib,assets folderlarını oluşturduğun projeye kopyala
 - Google_ads ayarlamalarını yap.
     - Android/manifest odyasını değiştir
             
@@ -27,4 +27,4 @@ A new Flutter project.
 			</dict>
 		</array>
         ```
-
+- Splash screen için Terminalden ```flutter pub run flutter_native_splash:create``` komutunu çalıştır.
