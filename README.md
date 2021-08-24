@@ -9,7 +9,6 @@ A new Flutter project.
 - Google_ads ayarlamalarını yap.
     - Android/manifest odyasını değiştir
             ```
-            
             <meta-data 
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8786191356169416~7553309902"/>
