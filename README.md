@@ -1,4 +1,4 @@
-# sablon
+# Flutter Başlangıç Klavuzu
 
 Yeni bir fllutter projesine başlarken hazır olarak bazı kütüphaneleri barındırır. 
 Barındırdığı hazır yapılar:
