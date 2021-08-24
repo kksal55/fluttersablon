@@ -1,11 +1,22 @@
 # sablon
 
-A new Flutter project.
+Yeni bir fllutter projesine başlarken hazır olarak bazı kütüphaneleri barındırır. 
+Barındırdığı hazır yapılar:
+- Lokalizasyon
+- Provider
+- Splash screen
+- Hamburger menü
+- Bottom bar
+- Admanager ve Admob ayarları ve eklemeleri
+- Sharedpreferences
+- Tema 
+- Sqlite helper
 
 ## Getting Started
 
 - Yeni bir proje oluştur.
 - Burada yer alan lib,assets folderlarını oluşturduğun projeye kopyala
+- Projede replace yaparak '''sablond''' kelimesini belirlemiş olduğun proje adı ile değiştir.
 - Google_ads ayarlamalarını yap.
     - Android/manifest odyasını değiştir
             
