@@ -48,8 +48,7 @@ class drawer extends StatelessWidget {
                               colors: [Colors.orange, Colors.deepOrange])),
                       child: CircleAvatar(
                         radius: 40,
-                        backgroundImage:
-                            AssetImage("assets/images/splash.png"),
+                        backgroundImage: AssetImage("assets/images/splash.png"),
                       ),
                     ),
                     SizedBox(height: 5.0),
@@ -70,9 +69,7 @@ class drawer extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyHomePage(
-                              title: "Şifalı Bitkiler",
-                            ),
+                            builder: (context) => MyHomePage(),
                           ),
                           (Route<dynamic> route) => false,
                         );

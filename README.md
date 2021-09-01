@@ -2,13 +2,13 @@
 
 Yeni bir fllutter projesine başlarken hazır olarak bazı kütüphaneleri barındırır. 
 Barındırdığı hazır yapılar:
-- Lokalizasyon
-- Provider
+- Lokalizasyon (Getx)
+- Provider (Getx)
 - Splash screen
 - Hamburger menü
 - Bottom bar
 - Admanager ve Admob ayarları ve eklemeleri
-- Sharedpreferences
+- Sharedpreferences (Getx)
 - Tema 
 - Sqlite helper
 
@@ -39,3 +39,4 @@ Barındırdığı hazır yapılar:
 		</array>
         ```
 - Splash screen için Terminalden ```flutter pub run flutter_native_splash:create``` komutunu çalıştır.
+- Build.gradle dosyasında minSDK 21 olarak güncelle.
